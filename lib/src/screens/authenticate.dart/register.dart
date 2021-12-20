@@ -188,6 +188,7 @@ class _RegisterState extends State<Register> {
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       }
                       else{
+                        setState(() => _loading = false);
                         //Navigator.pushNamed(context, '/profile details', arguments: {'email': _email, 'password': _password});
                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
                       }
