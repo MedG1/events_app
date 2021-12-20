@@ -77,8 +77,14 @@ class DatabaseServices {
     if(result.exists){
       Event event = _eventFromSnapshot(result);
       String eventId = result.reference.id;
-      String posterURL =  await StorageServices().getEventPoster(eventId);
-      event.poster = posterURL;
+      try{
+        String posterURL =  await StorageServices().getEventPoster(eventId);
+        event.poster = posterURL;
+      } catch(e){
+        print(e);
+      }
+      
+      
       return event;
     } else {
       return null;

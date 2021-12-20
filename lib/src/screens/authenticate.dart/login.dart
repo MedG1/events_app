@@ -150,7 +150,6 @@ class _LogInState extends State<LogIn> {
                                 //hintStyle: TextStyle(color: Colors.grey),
                                 icon: Icon(Icons.mail, color: Colors.grey, size: 15),
                               ),
-
                               // validate email format
                               validator: (value) {
                                 final pattern = r'(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)';
@@ -212,7 +211,7 @@ class _LogInState extends State<LogIn> {
                         //if input is valid then autheticate with firebase
                         if(isValid){
 
-                          // reder laoding screen
+                          // render laoding screen
                           setState(() => _loading = true);
     
                           dynamic result = await _auth.signInWithEmailAndPassword(_emailController.text, _passwordController.text);
@@ -272,7 +271,7 @@ class _LogInState extends State<LogIn> {
                       TextButton(
                         onPressed: (){
                           FocusScope.of(context).unfocus();
-                          Navigator.pushNamed(context, '/sign up');
+                          Navigator.pushReplacementNamed(context, '/sign up');
                         },
                         child: Text(
                           "Sign Up",

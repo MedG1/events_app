@@ -1,3 +1,6 @@
+import 'package:events_app/src/screens/home/home_screen.dart';
+import 'package:events_app/src/screens/loading.dart';
+import 'package:events_app/src/services/auth.dart';
 import 'package:flutter/material.dart';
 
 
@@ -14,13 +17,25 @@ class _RegisterState extends State<Register> {
 
   String _email = '';
   String _password = '';
+  final _auth = AuthService();
+  bool _loading = false;
 
   @override
   Widget build(BuildContext context) {
 
     double width = MediaQuery.of(context).size.width;
 
-    return Scaffold(
+    return _loading ? Loading(): (Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: BackButton(
+          onPressed: (){
+            Navigator.pushReplacementNamed(context, '/');
+          },
+          color: Colors.white,
+        ),
+      ),
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -163,20 +178,28 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                   ),
-                  onPressed: (){
-
-                    if(_formKey.currentState.validate()){
-                      Navigator.pushReplacementNamed(context, '/profile details', arguments: {'email': _email, 'password': _password});
-                    }
+                  onPressed: () async {
+                    setState(() => _loading = true);
+                    if(_formKey.currentState.validate()) {
+                      dynamic result = await _auth.registerWithEmailAndPassword(_email, _password);
+                      if(result == null) {
+                        final snackBar = SnackBar(backgroundColor: Colors.red, content: Text('email already in use', style: TextStyle(color: Colors.white, fontSize: 20.0)));
+                        setState(() => _loading = false);
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
+                      else{
+                        //Navigator.pushNamed(context, '/profile details', arguments: {'email': _email, 'password': _password});
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                      }
                     //createAlertDialog();
-                  },
+                  }}
                 ),
               )
             ],
           ),
         ),
       ),
-    );
+    ));
   }
 
   // create alert dialog asking for email verification

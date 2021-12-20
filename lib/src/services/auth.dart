@@ -36,7 +36,7 @@ class AuthService {
       return null;
     }
   }
-
+  
   // sign up with email and password
   Future registerWithEmailAndPassword(String email, String password) async {
     try {
@@ -45,6 +45,7 @@ class AuthService {
       //await DatabaseServices().updateUserData('first name', 'last name', 'university');
       return _userFromFireBaseUser(user);
     } catch(e) {
+      print('failed to sign up user with email: $email & password: $password');
       print(e.toString());
       return null;
     }

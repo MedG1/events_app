@@ -61,9 +61,10 @@ class _ClubEditorState extends State<ClubEditor> {
   void uploadClub() async {
     DocumentReference result = await DatabaseServices().addClub(Club.fromMap(clubData));
     await StorageServices().uploadclubLogo(imageFile, result.id);
-
+    print("upload completed");
     // first pop; to close for bottomsheet (upload progress indicator)
     Navigator.pop(context);
+    print("pop up closed");
     // second pop; to exit event editor and get back to club screen
     Navigator.pop(context);
   }

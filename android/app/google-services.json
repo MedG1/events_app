@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "406867742090",
-    "project_id": "supcom-events-app",
-    "storage_bucket": "supcom-events-app.appspot.com"
+    "project_number": "72750032751",
+    "project_id": "events-app-bdf1d",
+    "storage_bucket": "events-app-bdf1d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:406867742090:android:2abe3ed1823029c2a8cc73",
+        "mobilesdk_app_id": "1:72750032751:android:a4811dd6e52eb7237aaa9a",
         "android_client_info": {
           "package_name": "com.SupComApp.events_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "406867742090-usih46e4nvob8gp6a3m5ksv9dgatd9e9.apps.googleusercontent.com",
+          "client_id": "72750032751-5n3t0rb7fq5l4uii085m4sdej5j55q34.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyApfXvpjXEVTAlUyALt0BauuUM2S1MgTGY"
+          "current_key": "AIzaSyAIRergA57XgWzWJtzYsDXOYJ0VCpFsyHs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "406867742090-usih46e4nvob8gp6a3m5ksv9dgatd9e9.apps.googleusercontent.com",
+              "client_id": "72750032751-5n3t0rb7fq5l4uii085m4sdej5j55q34.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

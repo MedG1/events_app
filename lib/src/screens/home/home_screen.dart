@@ -30,9 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // get current user
   @override
-  void initState()  {
+  void initState() {
     super.initState();
-    database.currentUserData.then((value) => userData = value);
+
+    //database.currentUserData.then((value) => userData=value);
   }
 
   @override
@@ -137,7 +138,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
 
-      bottomNavigationBar: buildBottomNavigationBar(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color.fromARGB(255, 20, 159, 255),
         child: Icon(Icons.add),
@@ -198,7 +198,14 @@ class _ClubListState extends State<ClubList> {
   Future<List<Club>> getclubList(List<Club> clubList) async {
     for(int i = 0; i<clubList.length; i++){
       if(clubList[i].logo == null){
-        await _storage.getClubLogo(clubList[i].id).then((url) {clubList[i].logo = url;});
+        print("getting club logo");
+        try{
+          await _storage.getClubLogo(clubList[i].id).then((url) {clubList[i].logo = url;});
+        } catch(e){
+          print("an error occured");
+          print(e);
+        }
+        
       }
     }
     return clubList;
@@ -269,10 +276,10 @@ class MyDrawer extends StatelessWidget {
         children: <Widget>[
           UserAccountsDrawerHeader(
             accountName: Text(
-              '${userData.firstName} ${userData.lastName}',
+              'Welcome',
               style: TextStyle(
-                fontSize: 18,
-                color: Colors.black,
+                fontSize: 25,
+                color: Colors.white,
               ),
             ), 
             accountEmail: Text(
@@ -338,7 +345,7 @@ class NotificationButton extends StatefulWidget {
 class _NotificationButtonState extends State<NotificationButton> {
 
 
-  Color _notifColor = Colors.red;
+  Color _notifColor = Colors.white;
 
   @override
   Widget build(BuildContext context) {

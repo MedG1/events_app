@@ -112,6 +112,7 @@ class _EventScreenState extends State<EventScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
+          //TODO: replaced push with push
           Navigator.push(context, MaterialPageRoute(builder: (context) => EventEditor(event: widget.event)));
         },
         child: Icon(Icons.edit),

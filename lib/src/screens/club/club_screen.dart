@@ -149,7 +149,13 @@ class EventGallery extends StatelessWidget {
   Future<List<Event>> getEventList(List<Event> eventList) async {
     for(int i = 0; i<eventList.length; i++){
       if(eventList[i].poster == null){
-        await _storage.getEventPoster(eventList[i].eventId).then((url) {eventList[i].poster = url;});
+        try{
+          await _storage.getEventPoster(eventList[i].eventId).then((url) {eventList[i].poster = url;});
+        }catch(e){
+          print("event occured in club  page while uploading event");
+          print(e);
+        }
+        
       }
     }
     return eventList;
